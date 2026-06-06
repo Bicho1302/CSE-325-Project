@@ -1,0 +1,43 @@
+@page "/studygroups"
+@rendermode InteractiveServer
+
+@using CSE325Project.Models
+@using CSE325Project.Data
+
+<h3>Study Groups</h3>
+
+<input class="form-control mb-3"
+       placeholder="Search by course..."
+       @bind="searchTerm"
+       @bind:event="oninput" />
+
+@if (!FilteredGroups.Any())
+{
+    <p>No study groups found.</p>
+}
+else
+{
+    @foreach (var group in FilteredGroups)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>@group.GroupName</h5>
+                <p><strong>Course:</strong> @group.CourseName</p>
+                <p>@group.Description</p>
+                <p><strong>Members:</strong> @group.Members</p>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private string searchTerm = "";
+
+    private IEnumerable<StudyGroup> FilteredGroups =>
+        string.IsNullOrWhiteSpace(searchTerm)
+            ? StudyGroupData.Groups
+            : StudyGroupData.Groups.Where(g =>
+                g.CourseName.Contains(
+                    searchTerm,
+                    StringComparison.OrdinalIgnoreCase));
+}
