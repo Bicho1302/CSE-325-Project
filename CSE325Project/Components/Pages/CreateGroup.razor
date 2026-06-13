@@ -1,0 +1,57 @@
+@page "/creategroup"
+@rendermode InteractiveServer
+
+@using CSE325Project.Models
+@using CSE325Project.Data
+
+<h3>Create Study Group</h3>
+
+<div class="mb-3">
+    <label class="form-label">Group Name</label>
+    <input class="form-control" @bind="newGroup.GroupName" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Course Name</label>
+    <input class="form-control" @bind="newGroup.CourseName" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" @bind="newGroup.Description"></textarea>
+</div>
+
+<button class="btn btn-primary" @onclick="AddGroup">
+    Create Group
+</button>
+
+@if (groupCreated)
+{
+    <div class="alert alert-success mt-3">
+        Study group created successfully!
+    </div>
+}
+
+@code {
+    private StudyGroup newGroup = new();
+    private bool groupCreated = false;
+
+private void AddGroup()
+{
+    newGroup.Id = StudyGroupData.Groups.Max(g => g.Id) + 1;
+    newGroup.Members = 1;
+
+    StudyGroupData.Groups.Add(new StudyGroup
+    {
+        Id = newGroup.Id,
+        GroupName = newGroup.GroupName,
+        CourseName = newGroup.CourseName,
+        Description = newGroup.Description,
+        Members = newGroup.Members
+    });
+
+    groupCreated = true;
+
+    newGroup = new StudyGroup();
+}
+}

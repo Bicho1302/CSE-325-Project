@@ -5,6 +5,7 @@
 @using CSE325Project.Data
 
 <h3>Study Groups</h3>
+<p>Search for available study groups by course name.</p>
 
 <input class="form-control mb-3"
        placeholder="Search by course..."
@@ -21,10 +22,15 @@ else
     {
         <div class="card mb-3">
             <div class="card-body">
-                <h5>@group.GroupName</h5>
+                <h5 class="card-title">@group.GroupName</h5>
                 <p><strong>Course:</strong> @group.CourseName</p>
                 <p>@group.Description</p>
                 <p><strong>Members:</strong> @group.Members</p>
+                <button class="btn btn-success btn-sm"
+        @onclick="() => JoinGroup(group)">
+    Join Group
+</button>
+
             </div>
         </div>
     }
@@ -40,4 +46,8 @@ else
                 g.CourseName.Contains(
                     searchTerm,
                     StringComparison.OrdinalIgnoreCase));
+                    private void JoinGroup(StudyGroup group)
+{
+    group.Members++;
+}
 }

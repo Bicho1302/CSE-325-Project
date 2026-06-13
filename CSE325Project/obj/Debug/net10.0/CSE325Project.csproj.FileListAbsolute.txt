@@ -70,8 +70,6 @@ C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\8hfg967t9u-{0}-63fj8s7r0e-63fj8s7r0e.gz
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\lw452h62nm-{0}-0j3bgjxly4-0j3bgjxly4.gz
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\gpekqbdzos-{0}-abdmv1u4y3-abdmv1u4y3.gz
-C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\t0s8mpjj7g-{0}-ej96puwv3k-ej96puwv3k.gz
-C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\eod441iuw9-{0}-cj5793hgrt-cj5793hgrt.gz
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\t29uf8se9e-{0}-1wwcm48whl-1wwcm48whl.gz
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\b4e1wky2q5-{0}-1wwcm48whl-1wwcm48whl.gz
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\staticwebassets.build.json
@@ -84,3 +82,5 @@ C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\CSE325Project.pdb
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\CSE325Project.genruntimeconfig.cache
 C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\ref\CSE325Project.dll
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\t0s8mpjj7g-{0}-ne14ti1q68-ne14ti1q68.gz
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net10.0\compressed\eod441iuw9-{0}-ig5xotzpx5-ig5xotzpx5.gz
