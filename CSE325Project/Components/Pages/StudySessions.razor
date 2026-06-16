@@ -1,0 +1,73 @@
+@page "/studysessions"
+@rendermode InteractiveServer
+
+@using CSE325Project.Models
+@using CSE325Project.Data
+
+<h3>Study Sessions</h3>
+<p>Schedule and view upcoming study sessions.</p>
+
+<div class="mb-3">
+    <label>Group Name</label>
+    <input class="form-control" @bind="newSession.GroupName" />
+</div>
+
+<div class="mb-3">
+    <label>Topic</label>
+    <input class="form-control" @bind="newSession.Topic" />
+</div>
+
+<div class="mb-3">
+    <label>Date and Time</label>
+    <input class="form-control" type="datetime-local" @bind="sessionDateInput" />
+</div>
+
+<div class="mb-3">
+    <label>Location</label>
+    <input class="form-control" @bind="newSession.Location" />
+</div>
+
+<button class="btn btn-primary" @onclick="CreateSession">
+    Schedule Session
+</button>
+
+<hr />
+
+<h4>Upcoming Sessions</h4>
+
+@foreach (var session in StudySessionData.Sessions)
+{
+    <div class="card mb-2">
+        <div class="card-body">
+            <h5>@session.Topic</h5>
+            <p><strong>Group:</strong> @session.GroupName</p>
+            <p><strong>Date:</strong> @session.SessionDate</p>
+            <p><strong>Location:</strong> @session.Location</p>
+            <button class="btn btn-danger btn-sm"
+        @onclick="() => DeleteSession(session)">
+    Delete Session
+</button>
+        </div>
+    </div>
+}
+
+@code {
+    private StudySession newSession = new();
+
+    private DateTime sessionDateInput = DateTime.Now;
+
+    private void CreateSession()
+    {
+        newSession.Id = StudySessionData.Sessions.Count + 1;
+        newSession.SessionDate = sessionDateInput;
+
+        StudySessionData.Sessions.Add(newSession);
+
+        newSession = new StudySession();
+        sessionDateInput = DateTime.Now;
+    }
+    private void DeleteSession(StudySession session)
+{
+    StudySessionData.Sessions.Remove(session);
+}
+}
