@@ -1,0 +1,7 @@
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net8.0\CSE325Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net8.0\CSE325Project.AssemblyInfoInputs.cache
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net8.0\CSE325Project.AssemblyInfo.cs
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net8.0\CSE325Project.csproj.CoreCompileInputs.cache
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net8.0\CSE325Project.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\victo\Documents\BYU IDAHO\CSE-325-Project\CSE325Project\obj\Debug\net8.0\CSE325Project.sourcelink.json
