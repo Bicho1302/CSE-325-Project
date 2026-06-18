@@ -72,7 +72,7 @@ else
             ? StudyGroupData.Groups
             : StudyGroupData.Groups.Where(g =>
                 g.CourseName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
-
+// Increase member count when a student joins a group
     private void JoinGroup(StudyGroup group)
     {
         group.Members++;
@@ -91,7 +91,7 @@ else
             Members = group.Members
         };
     }
-
+// Save changes made to a study group
     private void SaveEdit()
     {
         if (originalGroup != null && editingGroup != null)
@@ -111,6 +111,7 @@ else
         editingGroup = null;
         originalGroup = null;
     }
+// Remove a study group from the list
 
     private void DeleteGroup(int id)
     {
