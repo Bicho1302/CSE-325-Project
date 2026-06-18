@@ -12,6 +12,22 @@
        @bind="searchTerm"
        @bind:event="oninput" />
 
+@if (editingGroup != null)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>Edit Study Group</h5>
+
+            <input class="form-control mb-2" @bind="editingGroup.GroupName" />
+            <input class="form-control mb-2" @bind="editingGroup.CourseName" />
+            <textarea class="form-control mb-2" @bind="editingGroup.Description"></textarea>
+
+            <button class="btn btn-primary btn-sm me-2" @onclick="SaveEdit">Save</button>
+            <button class="btn btn-secondary btn-sm" @onclick="CancelEdit">Cancel</button>
+        </div>
+    </div>
+}
+
 @if (!FilteredGroups.Any())
 {
     <p>No study groups found.</p>
@@ -26,11 +42,21 @@ else
                 <p><strong>Course:</strong> @group.CourseName</p>
                 <p>@group.Description</p>
                 <p><strong>Members:</strong> @group.Members</p>
-                <button class="btn btn-success btn-sm"
-        @onclick="() => JoinGroup(group)">
-    Join Group
-</button>
 
+                <button class="btn btn-success btn-sm me-2"
+                        @onclick="() => JoinGroup(group)">
+                    Join Group
+                </button>
+
+                <button class="btn btn-warning btn-sm me-2"
+                        @onclick="() => EditGroup(group)">
+                    Edit
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                        @onclick="() => DeleteGroup(group.Id)">
+                    Delete
+                </button>
             </div>
         </div>
     }
@@ -38,16 +64,61 @@ else
 
 @code {
     private string searchTerm = "";
+    private StudyGroup? editingGroup;
+    private StudyGroup? originalGroup;
 
     private IEnumerable<StudyGroup> FilteredGroups =>
         string.IsNullOrWhiteSpace(searchTerm)
             ? StudyGroupData.Groups
             : StudyGroupData.Groups.Where(g =>
-                g.CourseName.Contains(
-                    searchTerm,
-                    StringComparison.OrdinalIgnoreCase));
-                    private void JoinGroup(StudyGroup group)
-{
-    group.Members++;
-}
+                g.CourseName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    private void JoinGroup(StudyGroup group)
+    {
+        group.Members++;
+    }
+
+    private void EditGroup(StudyGroup group)
+    {
+        originalGroup = group;
+
+        editingGroup = new StudyGroup
+        {
+            Id = group.Id,
+            GroupName = group.GroupName,
+            CourseName = group.CourseName,
+            Description = group.Description,
+            Members = group.Members
+        };
+    }
+
+    private void SaveEdit()
+    {
+        if (originalGroup != null && editingGroup != null)
+        {
+            originalGroup.GroupName = editingGroup.GroupName;
+            originalGroup.CourseName = editingGroup.CourseName;
+            originalGroup.Description = editingGroup.Description;
+            originalGroup.Members = editingGroup.Members;
+        }
+
+        editingGroup = null;
+        originalGroup = null;
+    }
+
+    private void CancelEdit()
+    {
+        editingGroup = null;
+        originalGroup = null;
+    }
+
+    private void DeleteGroup(int id)
+    {
+        var group = StudyGroupData.Groups.FirstOrDefault(g => g.Id == id);
+
+        if (group != null)
+        {
+            StudyGroupData.Groups.Remove(group);
+        }
+    }
 }

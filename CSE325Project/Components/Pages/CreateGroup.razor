@@ -3,55 +3,87 @@
 
 @using CSE325Project.Models
 @using CSE325Project.Data
+@using CSE325Project.Services
+@inject AuthService Auth
 
 <h3>Create Study Group</h3>
 
-<div class="mb-3">
-    <label class="form-label">Group Name</label>
-    <input class="form-control" @bind="newGroup.GroupName" />
-</div>
-
-<div class="mb-3">
-    <label class="form-label">Course Name</label>
-    <input class="form-control" @bind="newGroup.CourseName" />
-</div>
-
-<div class="mb-3">
-    <label class="form-label">Description</label>
-    <textarea class="form-control" @bind="newGroup.Description"></textarea>
-</div>
-
-<button class="btn btn-primary" @onclick="AddGroup">
-    Create Group
-</button>
-
-@if (groupCreated)
+@if (!Auth.IsLoggedIn)
 {
-    <div class="alert alert-success mt-3">
-        Study group created successfully!
+    <div class="alert alert-warning" role="alert">
+        Please log in before creating a study group.
     </div>
+}
+else
+{
+    <div class="mb-3">
+        <label class="form-label">Group Name</label>
+        <input class="form-control" @bind="newGroup.GroupName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Course Name</label>
+        <input class="form-control" @bind="newGroup.CourseName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" @bind="newGroup.Description"></textarea>
+    </div>
+
+    <button class="btn btn-primary" @onclick="AddGroup">
+        Create Group
+    </button>
+
+    @if (!string.IsNullOrWhiteSpace(errorMessage))
+    {
+        <div class="alert alert-danger mt-3">
+            @errorMessage
+        </div>
+    }
+
+    @if (groupCreated)
+    {
+        <div class="alert alert-success mt-3">
+            Study group created successfully!
+        </div>
+    }
 }
 
 @code {
     private StudyGroup newGroup = new();
     private bool groupCreated = false;
+    private string errorMessage = "";
 
-private void AddGroup()
-{
-    newGroup.Id = StudyGroupData.Groups.Max(g => g.Id) + 1;
-    newGroup.Members = 1;
-
-    StudyGroupData.Groups.Add(new StudyGroup
+    private void AddGroup()
     {
-        Id = newGroup.Id,
-        GroupName = newGroup.GroupName,
-        CourseName = newGroup.CourseName,
-        Description = newGroup.Description,
-        Members = newGroup.Members
-    });
+        errorMessage = "";
+        groupCreated = false;
 
-    groupCreated = true;
+        if (string.IsNullOrWhiteSpace(newGroup.GroupName) ||
+            string.IsNullOrWhiteSpace(newGroup.CourseName) ||
+            string.IsNullOrWhiteSpace(newGroup.Description))
+        {
+            errorMessage = "Please complete all fields before creating a study group.";
+            return;
+        }
 
-    newGroup = new StudyGroup();
-}
+        newGroup.Id = StudyGroupData.Groups.Any()
+            ? StudyGroupData.Groups.Max(g => g.Id) + 1
+            : 1;
+
+        newGroup.Members = 1;
+
+        StudyGroupData.Groups.Add(new StudyGroup
+        {
+            Id = newGroup.Id,
+            GroupName = newGroup.GroupName,
+            CourseName = newGroup.CourseName,
+            Description = newGroup.Description,
+            Members = newGroup.Members
+        });
+
+        groupCreated = true;
+        newGroup = new StudyGroup();
+    }
 }

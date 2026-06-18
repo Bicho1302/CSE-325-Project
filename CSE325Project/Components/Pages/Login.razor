@@ -1,0 +1,48 @@
+@page "/login"
+@using CSE325Project.Services
+@rendermode InteractiveServer
+@inject AuthService Auth
+@inject NavigationManager Navigation
+
+<h1>Login</h1>
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+
+<div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input id="username" class="form-control" @bind="username" />
+</div>
+
+<div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input id="password" type="password" class="form-control" @bind="password" />
+</div>
+
+<button class="btn btn-primary" @onclick="HandleLogin">Login</button>
+
+<p class="mt-3">
+    Demo login: <strong>student</strong> / <strong>studyhub</strong>
+</p>
+
+@code {
+    private string username = "";
+    private string password = "";
+    private string errorMessage = "";
+
+    private void HandleLogin()
+    {
+        if (Auth.Login(username, password))
+        {
+            Navigation.NavigateTo("/studygroups");
+        }
+        else
+        {
+            errorMessage = "Invalid username or password.";
+        }
+    }
+}
