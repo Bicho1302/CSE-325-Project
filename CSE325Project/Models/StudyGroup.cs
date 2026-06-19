@@ -1,5 +1,5 @@
 namespace CSE325Project.Models;
-
+// Represents a study group with details such as course name, group name, description, and number of members.
 public class StudyGroup
 {
     public int Id { get; set; }

@@ -1,7 +1,7 @@
 using CSE325Project.Models;
 
 namespace CSE325Project.Data;
-
+// Provides sample data for study sessions, including group name, topic, date, and location.
 public static class StudySessionData
 {
     public static List<StudySession> Sessions =

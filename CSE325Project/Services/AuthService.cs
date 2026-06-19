@@ -1,4 +1,5 @@
 namespace CSE325Project.Services
+// Provides authentication services for the application, including login and logout functionality.
 {
     public class AuthService
     {

@@ -1,7 +1,7 @@
 using CSE325Project.Models;
 
 namespace CSE325Project.Data;
-
+// Provides sample data for study groups, including course name, group name, description, and number of members.
 public static class StudyGroupData
 {
     public static List<StudyGroup> Groups =

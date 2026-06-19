@@ -1,5 +1,6 @@
 namespace CSE325Project.Models
 {
+    // Represents a study session with details such as group name, topic, date, and location.
     public class StudySession
     {
         public int Id { get; set; }
